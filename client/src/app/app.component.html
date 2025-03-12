@@ -1,0 +1,15 @@
+<h1>{{title}}</h1>
+<ul>
+
+    <!-- new for angular 17 approach -->
+    @for (user of users; track user.id) { 
+    <li>
+        {{user.id}} - {{user.userName}}
+    </li>
+}
+
+    <!-- This is older approach, structural = * -->
+    <li *ngFor="let user of users"> <!-- repeats each time for each user in this list, its going to repeat this list item for each user we have, basically a foreach for each list item-->
+        {{user.id}} - {{user.userName}}
+    </li>
+</ul>
