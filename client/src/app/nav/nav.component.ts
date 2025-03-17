@@ -12,8 +12,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 })
 export class NavComponent
 {
-  private accountService = inject(AccountService);
-  loggedIn = false;
+  accountService = inject(AccountService); // our template is not in the same class, it's considered a child class of our nav component. So we changed this from private to non private.
   model: any = {};
 
   login()
@@ -22,7 +21,6 @@ export class NavComponent
       next: response =>
       {
         console.log(response);
-        this.loggedIn = true;
       },
       error: error => console.log(error)
     })
@@ -31,6 +29,6 @@ export class NavComponent
 
   logout()
   {
-    this.loggedIn = false;
+    this.accountService.logout();
   }
 }

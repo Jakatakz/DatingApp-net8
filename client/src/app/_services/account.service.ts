@@ -6,7 +6,9 @@ import { HttpClient } from '@angular/common/http';
 
 // Injectable = a decorator that makes this class available for dependency injection. 
 // basically it's telling angular 'you can create and inject this service wherever its needed'
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { User } from '../_models/user';
+import { map } from 'rxjs';
 
 
 @Injectable({ // Injectable decorator
@@ -21,11 +23,24 @@ export class AccountService
   
   // baseUrl is a string holding the root URL of your backend api
   baseUrl = 'https://localhost:5001/api/';
+  currentUser = signal<User | null> (null)
 
   // method that sends a post request to your backend apis login endpoint
   login(model: any)
   {
-    return this.http.post(this.baseUrl + 'account/login', model); // this.http.post() sends the data to the endpoint
+    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+      map(user => {
+        if(user) {
+          localStorage.setItem('user',JSON.stringify(user));
+          this.currentUser.set(user);
+        }
+      })
+    ) // this.http.post() sends the data to the endpoint
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUser.set(null);
   }
 
   // This returns an observable, youll need dto subscribe() to it when calling this method in your component to actually trigger the request and handle the response.
