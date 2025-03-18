@@ -21,7 +21,7 @@
     @if (accountService.currentUser()) {
     <div dropdown class="dropdown">
       <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome user</a>
-      <div *dropdownMenu class="dropdown-menu">
+      <div *dropdownMenu class="dropdown-menu dropdown-item-color">
         <a class="dropdown-item">Edit profile</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">Logout</a>
