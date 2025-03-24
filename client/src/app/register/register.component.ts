@@ -1,5 +1,6 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +11,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegisterComponent
 {
-  usersFromHomeComponent = input.required<any>();
-  @Output() cancelRegister = new EventEmitter();
+  private accountService = inject(AccountService);
+  //cancelRegister = new EventEmitter(); // old way
+  cancelRegister = output<boolean>(); // new way
   model: any = {}
 
   register()
   {
     console.log(this.model);
+    this.accountService.register(this.model).subscribe({
+      next: response =>
+      {
+        console.log(response);
+        this.cancel();
+      },
+      error: error => console.log(error)
+    })
   }
 
   cancel()
