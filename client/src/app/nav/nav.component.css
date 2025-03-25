@@ -16,3 +16,7 @@
     background-color: aquamarine;
     color:black;
 }
+
+:host .nav-link.active {
+    color: orange;
+}

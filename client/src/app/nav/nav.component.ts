@@ -2,28 +2,31 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, BsDropdownModule, RouterLink],
+  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 export class NavComponent
 {
   accountService = inject(AccountService); // our template is not in the same class, it's considered a child class of our nav component. So we changed this from private to non private.
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
   model: any = {};
 
   login()
   {
     this.accountService.login(this.model).subscribe({
-      next: response =>
+      next: _ =>
       {
-        console.log(response);
+        this.router.navigateByUrl('/members');
       },
-      error: error => console.log(error)
+      error: error => this.toastr.error(error.error)
     })
     //console.log(this.model);
   }
@@ -31,5 +34,6 @@ export class NavComponent
   logout()
   {
     this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 }
