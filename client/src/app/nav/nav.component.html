@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-blue">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" [ngStyle]="{ 'background-color': navbarColor }">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Dating App</a>
 
-    @if (accountService.currentUser()) {
+    @if (true) { <!-- make it so you can always see the nav links, even if you're not logged in. -->
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
           <a routerLink="/members" routerLinkActive="active" class="nav-link">Matches</a>
