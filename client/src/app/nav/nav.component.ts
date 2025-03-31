@@ -29,7 +29,7 @@ export class NavComponent
     }
     else
     {
-      this.navbarColor = 'blue';
+      this.navbarColor = 'bg-primary';
     }
   }
 
