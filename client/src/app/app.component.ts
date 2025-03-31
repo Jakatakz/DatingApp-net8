@@ -16,6 +16,7 @@ import { ChildAComponent } from './ngtesting/decorators/child-a/child-a.componen
 })
 export class AppComponent implements OnInit {
   private accountService = inject(AccountService);
+  title = 'client';
 
   ngOnInit(): void {
       this.setCurrentUser();
