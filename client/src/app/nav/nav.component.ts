@@ -19,7 +19,7 @@ export class NavComponent
   private router = inject(Router);
   private toastr = inject(ToastrService);
   model: any = {};
-  navbarColor: string = 'blue';
+  navbarColor: string = 'bg-primary';
 
   updateNavBarColor()
   {
@@ -29,7 +29,7 @@ export class NavComponent
     }
     else
     {
-      this.navbarColor = 'blue';
+      this.navbarColor = 'bg-primary';
     }
   }
 
