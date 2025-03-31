@@ -10,4 +10,10 @@ import { ChildAComponent } from '../child-a/child-a.component';
 })
 export class ParentAComponent {
   parentMessage = "Hello from Parent Component";
+  childCount = 0;
+  childCountB = 0;
+
+  handleCountChanged(newCount: number) {
+    this.childCount = newCount;
+  }
 }
