@@ -19,17 +19,17 @@ export class NavComponent
   private router = inject(Router);
   private toastr = inject(ToastrService);
   model: any = {};
-  navbarColor: string = 'bg-primary';
+  navbarColor: string = '#0d6efd';
 
   updateNavBarColor()
   {
     if (this.accountService.currentUser())
     {
-      this.navbarColor = 'green';
+      this.navbarColor = '#0db0b0';
     }
     else
     {
-      this.navbarColor = 'bg-primary';
+      this.navbarColor = '#0d6efd';
     }
   }
 
@@ -50,6 +50,7 @@ export class NavComponent
   {
     this.accountService.logout();
     this.router.navigateByUrl('/');
+    console.log(this.accountService.currentUser());
     this.updateNavBarColor();
   }
 }
