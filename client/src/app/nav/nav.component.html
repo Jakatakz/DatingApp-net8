@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top" [ngStyle]="{ 'background-color': navbarColor }">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary"> <!-- [ngStyle]="{ 'background-color': navbarColor }"> -->
   <div class="container">
     <a class="navbar-brand" routerLink="/">Dating App</a>
 
@@ -12,15 +12,14 @@
         </li>
         <li class="nav-item">
           <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()">Logout</a>
-        </li>
       }
     </ul>
 
     @if (accountService.currentUser()) {
     <div dropdown class="dropdown">
-      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome user</a>
+      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
+        Welcome {{accountService.currentUser()?.username | titlecase}}
+      </a>
       <div *dropdownMenu class="dropdown-menu dropdown-item-color">
         <a class="dropdown-item">Edit profile</a>
         <div class="dropdown-divider"></div>
@@ -34,7 +33,7 @@
       <input name="username" [(ngModel)]="model.username" class="form-control me-2" placeholder="Username">
       <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
         type="password">
-      <button class="btn btn-outline-success login-button-color" type="submit">Login</button>
+      <button class="btn btn-success login-button-color" type="submit">Login</button>
       <!-- can press submit/login or enter key -->
     </form>
     }
