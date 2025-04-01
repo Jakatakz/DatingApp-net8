@@ -1,0 +1,8 @@
+<p>parent-a works!</p>
+<h1>ParentA component</h1>
+
+<div>
+    <app-child-a [message]="parentMessage" (countChanged)="handleCountChanged($event)" (countChangedB)="childCountB = $event"></app-child-a>
+    <p>count: <strong>{{childCount}}</strong></p>
+    <p>count b: <b>{{childCountB}}</b></p>
+</div>

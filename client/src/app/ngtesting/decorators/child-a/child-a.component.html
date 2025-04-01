@@ -1,0 +1,19 @@
+<p>child-a works!</p>
+<h2>Child Component</h2>
+<p>{{message}}</p>
+<div><app-display-quote></app-display-quote>
+<hr>
+<app-update-quote></app-update-quote>
+</div>
+<div *ngIf="isVisible; else displayThisIfNotVisible">
+    <button (click)="increment()">Increment</button>
+    <button (click)="incrementB()">Increment B</button>
+    <button (click)="toggleVisibility()">Toggle Visibility</button>
+</div>
+<div>
+    <hr>
+    <h3>*ngFor</h3>
+    <ul>
+    <li *ngFor="let item of listOfLetters">{{item}}</li>
+</ul></div>
+<ng-template #displayThisIfNotVisible><div>Displayed if 'isVisible' is false <button (click)="toggleVisibility()">Toggle Visibility</button> <hr></div></ng-template>
