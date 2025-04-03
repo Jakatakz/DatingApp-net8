@@ -14,12 +14,13 @@ namespace API.Middleware
             }
             catch (Exception ex)
             {
+                logger.LogInformation("...........................");
                 logger.LogError(ex, ex.Message); // logs to our terminal
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 var response = env.IsDevelopment() 
-                    ? new ApiException(context.Response.StatusCode, ex.Message, ex.StackTrace) 
+                    ? new ApiException(context.Response.StatusCode, "!!!!!!!!!!!!!!!!!!!!!."+ex.Message, ex.StackTrace) 
                     : new ApiException(context.Response.StatusCode, ex.Message, "Internal server error");
 
                 var options = new JsonSerializerOptions
