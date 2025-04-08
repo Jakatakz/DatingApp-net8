@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs';
 
@@ -23,15 +23,24 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
               }
               throw modalStateErrors.flat();
             } else {
-              toastr.error(error.error, error.status)
+              toastr.error(error.error, error.status);
             }
             break;
-            case 401:
-        
+          case 401:
+            toastr.error('Unauthorized', error.status);
+            break;
+          case 404: router.navigateByUrl('/not-found');
+            break;
+          case 500:
+            const navigationExtras: NavigationExtras = { state: { error: error.error } };
+            router.navigateByUrl('/server-error', navigationExtras);
+            break;
           default:
+            toastr.error('Something unexpected went wrong');
             break;
         }
       }
+      throw error;
     })
   ); //observable, an httpevent of an unknown type.
 };
