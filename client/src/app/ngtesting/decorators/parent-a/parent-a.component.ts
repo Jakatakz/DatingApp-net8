@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ChildAComponent } from '../child-a/child-a.component';
+import { DisplayDateComponent } from '../../../components/display-date/display-date.component';
 
 @Component({
   selector: 'app-parent-a',
   standalone: true,
-  imports: [ChildAComponent],
+  imports: [ChildAComponent, DisplayDateComponent],
   templateUrl: './parent-a.component.html',
   styleUrl: './parent-a.component.css'
 })
