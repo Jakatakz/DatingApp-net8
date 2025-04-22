@@ -1,4 +1,6 @@
-﻿using API.Entities;
+﻿using API.DTOs;
+using API.Entities;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -6,9 +8,21 @@ namespace API.Data
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
-        public UserRepository(DataContext context)
+        private readonly IMapper _mapper;
+        public UserRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+        }
+
+        public Task<MemberDto> GetMemberAsync(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<MemberDto>> GetMembersAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<AppUser?> GetUserByIdAsync(int id)
