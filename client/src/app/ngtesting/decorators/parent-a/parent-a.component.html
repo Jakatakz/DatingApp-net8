@@ -2,7 +2,7 @@
 <h1>ParentA component</h1>
 
 <hr>
-<div><app-display-date></app-display-date></div>
+<app-display-date></app-display-date>
 <hr>
 <div>
     <app-child-a [message]="parentMessage" (countChanged)="handleCountChanged($event)" (countChangedB)="childCountB = $event"></app-child-a>

@@ -10,4 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 export class DisplayDateComponent {
   today: Date = new Date();
+  isVisible: boolean = false;
+
+  toggleVisibility()
+  {
+    this.isVisible = !this.isVisible;
+  }
 }

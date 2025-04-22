@@ -1,4 +1,8 @@
-<p>display-date works!</p>
+<p style="color: yellow;">app-display-date</p>
+<button (click)="toggleVisibility()">app-display-date</button>
+<div *ngIf="isVisible;">
 <p>Today's date (Default format): {{ today }}</p>
 <p>Today's date (Short format): {{ today | date:'short' }}</p>
 <p>Today's date (Custom format): {{ today | date:'MM/dd/yyyy' }}</p>
+<p>Today's date (fullDate format): {{ today | date: 'fullDate' }}</p>
+</div>
